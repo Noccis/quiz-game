@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyledTriviaPage } from "../components/styled/TriviaPage.styled";
 import { useQuestions } from '../context/QuestionContext';
 import QuestionContainer from "../components/QuestionContainer";
@@ -7,6 +7,7 @@ import QuestionContainer from "../components/QuestionContainer";
 const TriviaPage = () => {
 
   const { questions, loading, error, getQuestions } = useQuestions();
+  const [playerScore, setPlayerScore] = useState(0);
 
   return (
     <StyledTriviaPage>
