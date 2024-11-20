@@ -1,23 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { StyledTriviaPage } from "../components/styled/TriviaPage.styled";
 import { useQuestions } from '../context/QuestionContext';
 
+
 const TriviaPage = () => {
-  
-  const { questions, setQuestions } = useQuestions();
 
-  useEffect(() => {
-    console.log("Use EFfect running");
-  }, []);
-
+  const { questions, loading, error, getQuestions } = useQuestions();
 
   return (
     <StyledTriviaPage>
       <h3>Trivia page</h3>
-      {questions.length > 0 ? (
-        <p>{questions[0]}</p>
-      ) : (
-        <p>No questions fetched yet.</p>
+      <button onClick={getQuestions} disabled={loading}>
+        Fetch Questions
+      </button>
+      {loading && <p>Loading...</p>}
+      {error && <p>{error}</p>}
+      {questions.length > 0 && (
+        <p>
+          {atob(questions[0].question)}
+        </p>
       )}
     </StyledTriviaPage>
   );
