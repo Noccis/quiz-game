@@ -16,9 +16,17 @@ const TriviaPage = () => {
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
       {questions.length > 0 && (
+        <div>
         <p>
           {atob(questions[0].question)}
         </p>
+        <p>
+          {atob(questions[0].type)}
+        </p>
+        <p>
+          {atob(questions[0].correct_answer)}
+        </p>
+        </div>
       )}
     </StyledTriviaPage>
   );
