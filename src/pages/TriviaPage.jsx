@@ -1,6 +1,7 @@
 import React from "react";
 import { StyledTriviaPage } from "../components/styled/TriviaPage.styled";
 import { useQuestions } from '../context/QuestionContext';
+import QuestionContainer from "../components/QuestionContainer";
 
 
 const TriviaPage = () => {
@@ -13,19 +14,17 @@ const TriviaPage = () => {
       <button onClick={getQuestions} disabled={loading}>
         Fetch Questions
       </button>
+      
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
       {questions.length > 0 && (
         <div>
-        <p>
-          {atob(questions[0].question)}
-        </p>
-        <p>
-          {atob(questions[0].type)}
-        </p>
-        <p>
-          {atob(questions[0].correct_answer)}
-        </p>
+          <QuestionContainer 
+          question={atob(questions[0].question)}
+          rightAnswer={atob(questions[0].correct_answer)}
+          wrongAnswers={atob(questions[0].incorrect_answers)}
+          
+          />
         </div>
       )}
     </StyledTriviaPage>
