@@ -1,7 +1,18 @@
 import styled from "styled-components";
 
 export const StyledTriviaPage = styled.div`
-height: 100%;
+height: 400px;
 width: 75%;
-padding: 1%;
+padding: 2%;
+display: flex;
+flex-direction: column;
+align-items: center;
+
+button {
+    margin: 20px;
+    padding: 5px;
+    background-color: rgb(12, 88, 159);
+    color: white;
+    border-radius: 7px;
+  }
 `
