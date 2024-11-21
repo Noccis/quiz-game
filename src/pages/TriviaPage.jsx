@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { StyledTriviaPage } from "../components/styled/TriviaPage.styled";
 import { useQuestions } from '../context/QuestionContext';
 import QuestionContainer from "../components/QuestionContainer";
+import GameOver from "../components/GameOver";
 
 
 const TriviaPage = () => {
@@ -16,7 +17,7 @@ const TriviaPage = () => {
       console.log("Du gissade rätt!!");
       setPlayerScore(playerScore + 1);   
     }else{
-      console.log("FFEEEEEEEEL!");
+      console.log("FEEEEEEEEL!");
     }
     setQuestionIndex(questionIndex + 1);
   }
@@ -40,18 +41,21 @@ const TriviaPage = () => {
       <button onClick={getQuestions} disabled={loading}>
         Fetch Questions
       </button>
-      
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
       {questions.length > 0 && (
+       questionIndex < questions.length ? (
         <div>
           <QuestionContainer 
-          question={atob(questions[questionIndex].question)}
-          choices={getArrayWithChoices()}
-          selectedAnswer={selectedAnswer}
+            question={atob(questions[questionIndex].question)}
+            choices={getArrayWithChoices()}
+            selectedAnswer={selectedAnswer}
           />
           <button onClick={isAnswerRight}>Next</button>
         </div>
+      ) : (
+        <GameOver playerScore={playerScore} />
+      )
       )}
     </StyledTriviaPage>
   );
