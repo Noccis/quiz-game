@@ -8,8 +8,34 @@ export const QuestionProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [lastFetchTime, setLastFetchTime] = useState(0);
-  const [categoryIndex, setCategoryIndex] = useState(3);
-  const categories = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+  const [categoryIndex, setCategoryIndex] = useState(2);
+  const [selectedCategory, setSelectedCategory] = useState(17);
+
+  const categories = [
+    { label: "General Knowledge", value: 9 },
+    { label: "Books", value: 10 },
+    { label: "Film", value: 11 },
+    { label: "Music", value: 12 },
+    { label: "Musical & theatres", value: 13 },
+    { label: "Television", value: 14 },
+    { label: "Video games", value: 15 },
+    { label: "Board games", value: 16 },
+    { label: "Science & nature", value: 17 },
+    { label: "Computers", value: 18 },
+    { label: "Mathematics", value: 19 },
+    { label: "Mythology", value: 20 },
+    { label: "Sports", value: 21 },
+    { label: "Geography", value: 22 },
+    { label: "History", value: 23 },
+    { label: "Politics", value: 24 },
+    { label: "Art", value: 25 },
+    { label: "Celebrities", value: 26 },
+    { label: "Animals", value: 27 },
+    { label: "Vehicles", value: 28 },
+    { label: "Comics", value: 29 },
+    { label: "Science: gadgets", value: 30 },
+    { label: "Anime & manga", value: 31 },
+    { label: "Cartoon & animations", value: 32 }]
 
   const getQuestions = useCallback(async () => {
     const now = Date.now();
@@ -21,7 +47,8 @@ export const QuestionProvider = ({ children }) => {
     setLoading(true);
     try {
       console.log("QuestionContext running!")
-      const data = await fetchData(categories[categoryIndex], 'easy');
+      console.log("Fetching data with category: " + selectedCategory)
+      const data = await fetchData(selectedCategory, 'easy');
       setQuestions(data);
       setLastFetchTime(now);
       console.log("QuestionContext running data recieved! " + data)
@@ -30,10 +57,10 @@ export const QuestionProvider = ({ children }) => {
     } finally {
       setLoading(false);
     }
-  }, [lastFetchTime]);
+  }, [lastFetchTime, selectedCategory]);
 
   return (
-    <QuestionContext.Provider value={{ questions, loading, error, getQuestions }}>
+    <QuestionContext.Provider value={{ questions, loading, error, getQuestions, categories, setCategoryIndex, selectedCategory, setSelectedCategory }}>
       {children}
     </QuestionContext.Provider>
   );
