@@ -17,7 +17,6 @@ const TriviaPage = () => {
       setPlayerScore(playerScore + 1);   
     }else{
       console.log("FFEEEEEEEEL!");
-   //   console.log("selected answer: " + selectedAnswer.current + "correct: " + questions[0].correct_answer)
     }
     setQuestionIndex(questionIndex + 1);
   }
