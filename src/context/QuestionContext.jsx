@@ -8,6 +8,8 @@ export const QuestionProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [lastFetchTime, setLastFetchTime] = useState(0);
+  const [categoryIndex, setCategoryIndex] = useState(3);
+  const categories = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
 
   const getQuestions = useCallback(async () => {
     const now = Date.now();
@@ -18,9 +20,11 @@ export const QuestionProvider = ({ children }) => {
 
     setLoading(true);
     try {
-      const data = await fetchData();
+      console.log("QuestionContext running!")
+      const data = await fetchData(categories[categoryIndex], 'easy');
       setQuestions(data);
       setLastFetchTime(now);
+      console.log("QuestionContext running data recieved! " + data)
     } catch (e) {
       setError("Failed to fetch questions.");
     } finally {
