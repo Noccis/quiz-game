@@ -22,3 +22,7 @@ body {
   display: flex;
   justify-content: space-between;
 }
+
+#nope {
+  background-color: rgb(12, 88, 159);
+}

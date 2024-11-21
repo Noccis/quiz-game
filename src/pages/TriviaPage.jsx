@@ -37,7 +37,6 @@ const TriviaPage = () => {
 
   return (
     <StyledTriviaPage>
-      <h3>Trivia page</h3>
       <button onClick={getQuestions} disabled={loading}>
         Fetch Questions
       </button>
@@ -45,14 +44,15 @@ const TriviaPage = () => {
       {error && <p>{error}</p>}
       {questions.length > 0 && (
        questionIndex < questions.length ? (
-        <div>
+        <>
           <QuestionContainer 
             question={atob(questions[questionIndex].question)}
             choices={getArrayWithChoices()}
             selectedAnswer={selectedAnswer}
+            index={questionIndex + 1}
           />
           <button onClick={isAnswerRight}>Next</button>
-        </div>
+        </>
       ) : (
         <GameOver playerScore={playerScore} />
       )

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { StyledQuestionContainer } from "./styled/QuestionContainer.styled";
 
-const QuestionContainer = ({ question, choices, selectedAnswer }) => {
+const QuestionContainer = ({ question, choices, selectedAnswer, index }) => {
   
 
   const handleAnswerSelect = (answer) => {
@@ -30,7 +30,7 @@ const QuestionContainer = ({ question, choices, selectedAnswer }) => {
 
   return (
     <StyledQuestionContainer>
-      <h1>Question here</h1>
+      <h3>Question {index}</h3>
       <p>{question}</p>
       <ul>
         {shuffledArrayOfChoises.map((answer, index) => (
