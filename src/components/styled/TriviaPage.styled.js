@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledTriviaPage = styled.div`
 height: 400px;
 width: 75%;
-padding: 2%;
+padding: 4%;
 display: flex;
 flex-direction: column;
 align-items: center;

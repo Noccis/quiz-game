@@ -20,7 +20,6 @@ export const QuestionProvider = ({ children }) => {
     try {
       const data = await fetchData();
       setQuestions(data);
-     // console.log(data);
       setLastFetchTime(now);
     } catch (e) {
       setError("Failed to fetch questions.");

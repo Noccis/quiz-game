@@ -6,7 +6,7 @@ width: 22%;
 display: flex;
 flex-direction: column;
 align-items: center;
-padding: 2%;
+padding-top: 4%;
 
     .flex-row {
         display: flex;

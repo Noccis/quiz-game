@@ -1,4 +1,4 @@
-const BASE_URL = "https://opentdb.com/api.php?amount=10&category=17&difficulty=easy&type=multiple&encode=base64";
+const BASE_URL = "https://opentdb.com/api.php?amount=10&category=11&difficulty=easy&type=multiple&encode=base64";
 
 export const fetchData = async () => {
 
