@@ -4,11 +4,12 @@ import { useQuestions } from "../context/QuestionContext";
 import QuestionContainer from "../components/QuestionContainer";
 import GameOver from "../components/GameOver";
 import Landing from "../components/Landing";
+import { usePlayerInfo } from '../context/PlayerContext'
 
 const TriviaPage = () => {
   // Values from the useContext:
   const { questions, loading, error, getQuestions } = useQuestions();
-  const [playerScore, setPlayerScore] = useState(0);
+  const {playerScore, setPlayerScore} = usePlayerInfo();
   const selectedAnswer = useRef("");
   const [questionIndex, setQuestionIndex] = useState(0);
   const [startGame, setStartGame] = useState(false);
