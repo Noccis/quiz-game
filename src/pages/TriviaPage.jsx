@@ -49,7 +49,7 @@ const TriviaPage = () => {
       {!startGame && (
         <>
           <Landing />
-          <button onClick={()=> {
+          <button id="large-button" onClick={()=> {
             setStartGame(true);
             getQuestions();
           }} disabled={loading}>

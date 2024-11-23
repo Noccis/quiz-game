@@ -13,7 +13,10 @@ padding-top: 4%;
     }
 
     .margin-bottom {
-        margin-bottom: 5px;
+        margin-bottom: 10px;
+    }
+    h4 {
+        margin-right: 4px;
     }
 
 
