@@ -1,35 +1,35 @@
-import React from 'react'
-import { StyledPlayerSection } from './styled/PlayerSection.styled'
-import { usePlayerInfo } from '../context/PlayerContext'
-import GameSettings from './GameSettings';
+import React from "react";
+import { StyledPlayerSection } from "./styled/PlayerSection.styled";
+import { usePlayerInfo } from "../context/PlayerContext";
 import { useQuestions } from "../context/QuestionContext";
 
 const PlayerSection = () => {
-  // 
 
   const { selectedCategory, categories } = useQuestions();
-  const {playerName, playerScore} = usePlayerInfo();
+  const { playerName, playerScore } = usePlayerInfo();
 
-  // Funktion som returnerar label baserat på selectedCategory
-const getCategoryLabel = () => {
-  const category = categories.find(category => category.value === selectedCategory);
-  return category ? category.label : null;  // Returnerar label eller null om inget matchar
-};
+  const getCategoryLabel = () => {
+    const category = categories.find(
+      (category) => category.value === selectedCategory
+    );
+    return category ? category.label : null; 
+  };
 
   return (
     <StyledPlayerSection>
-        <h1 className='margin-bottom'>{playerName}</h1>
-        <div className='flex-row margin-bottom'>
-          <p>Kategori:</p>
-          <p>{getCategoryLabel()}</p>
-        </div>
-        <div className='flex-row'>
-          <p>Rätta svar:</p>
-          <p>{playerScore}</p>
-        </div>    
-        <GameSettings />  
+      <div>
+      <h1 className="margin-bottom">{playerName}</h1>
+      <div className="flex-row margin-bottom">
+        <h4>Kategori:</h4>
+        <p>{getCategoryLabel()}</p>
+      </div>
+      <div className="flex-row">
+        <h4>Rätta svar:</h4>
+        <p>{playerScore}</p>
+      </div>
+      </div>
     </StyledPlayerSection>
-  )
-}
+  );
+};
 
-export default PlayerSection
+export default PlayerSection;

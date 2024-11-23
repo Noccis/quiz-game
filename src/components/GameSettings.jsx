@@ -21,7 +21,7 @@ const GameSettings = () => {
 
   return (
     <StyledGameSettings>
-        <h2>Select Category</h2>
+        <h3>Välj Kategori</h3>
       <select value={selectedCategory.value} onChange={handleSelectChange}>
         {categories.map((category) => (
           <option key={category.value} value={category.value}>
@@ -29,7 +29,7 @@ const GameSettings = () => {
           </option>
         ))}
       </select>
-      <h2>Select Difficulty</h2>
+      <h3>Välj Svårighetsgrad</h3>
             <select value={selectedDifficulty} onChange={handleDifficultyChange}>
                 {difficultyLvl.map((lvl) => (
                     <option key={lvl} value={lvl}>

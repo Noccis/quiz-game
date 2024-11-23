@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { StyledLanding } from './styled/Landing.styled'
 import { usePlayerInfo } from '../context/PlayerContext'
+import GameSettings from './GameSettings';
 
 const Landing = () => {
 
-  const {playerName, setPlayerName} = usePlayerInfo();
+  const {setPlayerName} = usePlayerInfo();
   const [inputValue, setInputValue] = useState("");
 
   const handleSubmit = (event) => {
@@ -29,8 +30,9 @@ const Landing = () => {
           value={inputValue}
           onChange={handleInputChange}
         />
-        <input type="submit" value={"Lägg till"} />
+        <input id='name-button' type="submit" value={"Lägg till"} />
       </form>
+      <GameSettings />
     </StyledLanding>
   )
 }
