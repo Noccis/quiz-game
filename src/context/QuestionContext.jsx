@@ -10,7 +10,7 @@ export const QuestionProvider = ({ children }) => {
   const [lastFetchTime, setLastFetchTime] = useState(0);
   const [categoryIndex, setCategoryIndex] = useState(2);
   const [selectedCategory, setSelectedCategory] = useState(17);
-
+  const [selectedDifficulty, setSelectedDifficulty] = useState("easy");
   const categories = [
     { label: "General Knowledge", value: 9 },
     { label: "Books", value: 10 },
@@ -47,8 +47,10 @@ export const QuestionProvider = ({ children }) => {
     setLoading(true);
     try {
       console.log("QuestionContext running!")
-      console.log("Fetching data with category: " + selectedCategory)
-      const data = await fetchData(selectedCategory, 'easy');
+      console.log("Fetching data with category: " + selectedCategory + "and difficulty: " + selectedDifficulty)
+      // Add controll here that selected category and difficulty is withing range.
+
+      const data = await fetchData(selectedCategory, selectedDifficulty);
       setQuestions(data);
       setLastFetchTime(now);
       console.log("QuestionContext running data recieved! " + data)
@@ -57,10 +59,10 @@ export const QuestionProvider = ({ children }) => {
     } finally {
       setLoading(false);
     }
-  }, [lastFetchTime, selectedCategory]);
+  }, [lastFetchTime, selectedCategory, selectedDifficulty]);
 
   return (
-    <QuestionContext.Provider value={{ questions, loading, error, getQuestions, categories, setCategoryIndex, selectedCategory, setSelectedCategory }}>
+    <QuestionContext.Provider value={{ questions, loading, error, getQuestions, categories, setCategoryIndex, selectedCategory, setSelectedCategory, selectedDifficulty, setSelectedDifficulty }}>
       {children}
     </QuestionContext.Provider>
   );
