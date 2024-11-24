@@ -4,17 +4,15 @@ import { useQuestions } from "../context/QuestionContext";
 import QuestionContainer from "../components/QuestionContainer";
 import GameOver from "../components/GameOver";
 import Landing from "../components/Landing";
-import { usePlayerInfo } from '../context/PlayerContext'
+import { usePlayerInfo } from "../context/PlayerContext";
 
 const TriviaPage = () => {
-  // Values from the useContext:
   const { questions, loading, error, getQuestions } = useQuestions();
-  const {playerScore, setPlayerScore} = usePlayerInfo();
+  const { playerScore, setPlayerScore } = usePlayerInfo();
   const selectedAnswer = useRef("");
   const [questionIndex, setQuestionIndex] = useState(0);
   const [startGame, setStartGame] = useState(false);
 
-  // Controll if the guess is correct and will generate a point
   function isAnswerRight() {
     if (selectedAnswer.current == questions[questionIndex].correct_answer) {
       setPlayerScore(playerScore + 1);
@@ -47,10 +45,14 @@ const TriviaPage = () => {
       {!startGame && (
         <>
           <Landing />
-          <button id="large-button" onClick={()=> {
-            setStartGame(true);
-            getQuestions();
-          }} disabled={loading}>
+          <button
+            id="large-button"
+            onClick={() => {
+              setStartGame(true);
+              getQuestions();
+            }}
+            disabled={loading}
+          >
             Starta spelet
           </button>
         </>
