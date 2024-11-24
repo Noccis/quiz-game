@@ -21,4 +21,4 @@ export const StyledTriviaPage = styled.div`
     height: 100px;
     font-size: 1.5rem;
   }
-`
+`;
