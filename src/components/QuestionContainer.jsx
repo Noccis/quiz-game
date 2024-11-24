@@ -33,7 +33,7 @@ const QuestionContainer = ({ question, choices, selectedAnswer, index }) => {
       <h3>Question {index}</h3>
       <p>{question}</p>
       <ul>
-        {choices.map((answer, idx) => (
+        {shuffledArrayOfChoises.map((answer, idx) => (
           <li
             key={idx}
             onClick={() => handleAnswerSelect(answer)}
