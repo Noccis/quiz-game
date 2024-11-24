@@ -1,13 +1,13 @@
-import React from 'react'
-import { StyledGameOver } from './styled/GameOver.styled'
+import React from "react";
+import { StyledGameOver } from "./styled/GameOver.styled";
 
-const GameOver = ({playerScore}) => {
+const GameOver = ({ playerScore }) => {
   return (
     <StyledGameOver>
-        <h2>Game over!</h2>
-        <p>Poäng denna runda: {playerScore}</p>
+      <h2>Game over!</h2>
+      <p>Poäng denna runda: {playerScore}</p>
     </StyledGameOver>
-  )
-}
+  );
+};
 
-export default GameOver
+export default GameOver;
