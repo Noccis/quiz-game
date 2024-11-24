@@ -35,7 +35,8 @@ export const QuestionProvider = ({ children }) => {
     { label: "Comics", value: 29 },
     { label: "Science: gadgets", value: 30 },
     { label: "Anime & manga", value: 31 },
-    { label: "Cartoon & animations", value: 32 }]
+    { label: "Cartoon & animations", value: 32 },
+  ];
 
   const getQuestions = useCallback(async () => {
     const now = Date.now();
@@ -46,14 +47,9 @@ export const QuestionProvider = ({ children }) => {
 
     setLoading(true);
     try {
-      console.log("QuestionContext running!")
-      console.log("Fetching data with category: " + selectedCategory + "and difficulty: " + selectedDifficulty)
-      // Add controll here that selected category and difficulty is withing range.
-
       const data = await fetchData(selectedCategory, selectedDifficulty);
       setQuestions(data);
       setLastFetchTime(now);
-      console.log("QuestionContext running data recieved! " + data)
     } catch (e) {
       setError("Failed to fetch questions.");
     } finally {
@@ -62,7 +58,20 @@ export const QuestionProvider = ({ children }) => {
   }, [lastFetchTime, selectedCategory, selectedDifficulty]);
 
   return (
-    <QuestionContext.Provider value={{ questions, loading, error, getQuestions, categories, setCategoryIndex, selectedCategory, setSelectedCategory, selectedDifficulty, setSelectedDifficulty }}>
+    <QuestionContext.Provider
+      value={{
+        questions,
+        loading,
+        error,
+        getQuestions,
+        categories,
+        setCategoryIndex,
+        selectedCategory,
+        setSelectedCategory,
+        selectedDifficulty,
+        setSelectedDifficulty,
+      }}
+    >
       {children}
     </QuestionContext.Provider>
   );

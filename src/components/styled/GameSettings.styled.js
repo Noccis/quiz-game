@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledGameSettings = styled.div`
- display: flex;
+  display: flex;
   flex-direction: column;
   align-self: flex-start;
 
@@ -11,4 +11,4 @@ export const StyledGameSettings = styled.div`
     margin-bottom: 15px;
     padding: 7px;
   }
-`
+`;
