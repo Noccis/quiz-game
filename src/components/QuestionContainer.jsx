@@ -33,17 +33,13 @@ const QuestionContainer = ({ question, choices, selectedAnswer, index }) => {
       <h3>Question {index}</h3>
       <p>{question}</p>
       <ul>
-        {shuffledArrayOfChoises.map((answer, index) => (
-          <li key={index}>
-            <input
-              type="radio"
-              id={`answer-${index}`}
-              name="answer"
-              value={answer}
-              checked={selectedAnswer === answer}
-              onChange={() => handleAnswerSelect(answer)}
-            />
-            <label htmlFor={`answer-${index}`}>{atob(answer)}</label>
+        {choices.map((answer, idx) => (
+          <li
+            key={idx}
+            onClick={() => handleAnswerSelect(answer)}
+            className={selectedAnswer.current === answer ? "selected" : ""}
+          >
+            {atob(answer)}
           </li>
         ))}
       </ul>
