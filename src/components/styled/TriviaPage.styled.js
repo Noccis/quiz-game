@@ -17,8 +17,14 @@ export const StyledTriviaPage = styled.div`
   }
 
   #large-button {
-    width: 200px;
-    height: 100px;
+    width: 160px;
+    height: 50px;
     font-size: 1.5rem;
+  }
+
+  .feedback {
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 1.2rem;
   }
 `;

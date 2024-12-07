@@ -11,6 +11,12 @@ export const StyledQuestionContainer = styled.div`
     margin-top: 10px;
     margin-bottom: 20px;
   }
+
+  .correct {
+    background-color:rgb(139, 191, 138);
+    color: white;
+  }
+
   ul {
     list-style: none;
     padding: 0;
@@ -26,11 +32,6 @@ export const StyledQuestionContainer = styled.div`
 
       &:hover {
         background-color: #ececec;
-      }
-
-      &.selected {
-        background-color: #d3d3d3; /* Ensures selected stays visible */
-        border-color: #bbb; /* Optional: make it more distinct */
       }
     }
   }

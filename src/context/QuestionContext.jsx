@@ -8,7 +8,6 @@ export const QuestionProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [lastFetchTime, setLastFetchTime] = useState(0);
-  const [categoryIndex, setCategoryIndex] = useState(2);
   const [selectedCategory, setSelectedCategory] = useState(17);
   const [selectedDifficulty, setSelectedDifficulty] = useState("easy");
   const categories = [
@@ -38,6 +37,17 @@ export const QuestionProvider = ({ children }) => {
     { label: "Cartoon & animations", value: 32 },
   ];
 
+  // Shuffle utility function
+  const shuffleAnswers = (correct, incorrect) => {
+    const choices = [...incorrect, correct];
+    for (let i = choices.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [choices[i], choices[j]] = [choices[j], choices[i]];
+    }
+    return choices;
+  };
+
+  // Fetch questions and shuffle answers
   const getQuestions = useCallback(async () => {
     const now = Date.now();
     if (now - lastFetchTime < 6000) {
@@ -48,7 +58,14 @@ export const QuestionProvider = ({ children }) => {
     setLoading(true);
     try {
       const data = await fetchData(selectedCategory, selectedDifficulty);
-      setQuestions(data);
+      const processedData = data.map((question) => ({
+        ...question,
+        shuffledChoices: shuffleAnswers(
+          question.correct_answer,
+          question.incorrect_answers
+        ),
+      }));
+      setQuestions(processedData);
       setLastFetchTime(now);
     } catch (e) {
       setError("Failed to fetch questions.");
@@ -65,8 +82,6 @@ export const QuestionProvider = ({ children }) => {
         error,
         getQuestions,
         categories,
-        setCategoryIndex,
-        selectedCategory,
         setSelectedCategory,
         selectedDifficulty,
         setSelectedDifficulty,
