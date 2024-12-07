@@ -12,32 +12,18 @@ const TriviaPage = () => {
   const selectedAnswer = useRef("");
   const [questionIndex, setQuestionIndex] = useState(0);
   const [startGame, setStartGame] = useState(false);
+  const [playerHasAnswered, setPlayerHasAnswered] = useState(false);
 
-  function isAnswerRight() {
-    if (selectedAnswer.current == questions[questionIndex].correct_answer) {
+  const isAnswerRight = () => {
+    if (selectedAnswer.current === questions[questionIndex].correct_answer) {
       setPlayerScore(playerScore + 1);
-    } else {
     }
-    setQuestionIndex(questionIndex + 1);
-  }
+    setPlayerHasAnswered(true);
+  };
 
-  // Take the right answer and put it somewhere random in the array of answers
-  function getArrayWithChoices() {
-    if (questions.length > 0) {
-      if (Array.isArray(questions[questionIndex].incorrect_answers)) {
-        let arrayOfChoices = [
-          ...questions[questionIndex].incorrect_answers,
-          questions[questionIndex].correct_answer,
-        ];
-        return arrayOfChoices;
-      } else {
-        let arrayOfChoices = [
-          questions[questionIndex].incorrect_answers,
-          questions[questionIndex].correct_answer,
-        ];
-        return arrayOfChoices;
-      }
-    }
+  function goToNextQuestion() {
+    setQuestionIndex(questionIndex + 1);
+    setPlayerHasAnswered(false);
   }
 
   return (
@@ -65,11 +51,15 @@ const TriviaPage = () => {
           <>
             <QuestionContainer
               question={atob(questions[questionIndex].question)}
-              choices={getArrayWithChoices()}
+              choices={questions[questionIndex].shuffledChoices}
               selectedAnswer={selectedAnswer}
               index={questionIndex + 1}
             />
-            <button onClick={isAnswerRight}>Next</button>
+            {!playerHasAnswered ? (
+              <button onClick={isAnswerRight}>Svara</button>
+            ) : (
+              <button onClick={goToNextQuestion}>Nästa fråga</button>
+            )}
           </>
         ) : (
           <GameOver playerScore={playerScore} />

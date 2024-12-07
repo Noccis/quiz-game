@@ -1,5 +1,4 @@
 import React from "react";
-import { StyledGameSettings } from "./styled/GameSettings.styled";
 import { useQuestions } from "../context/QuestionContext";
 
 const GameSettings = () => {
@@ -10,13 +9,9 @@ const GameSettings = () => {
     selectedDifficulty,
     setSelectedDifficulty,
   } = useQuestions();
-  const difficultyLvl = ["easy", "medium", "hard"];
 
-  const handleSelectChange = (event) => {
-    const selectedCategory = categories.find(
-      (category) => category.value === parseInt(event.target.value)
-    );
-    setSelectedCategory(selectedCategory.value);
+  const handleCategoryChange = (event) => {
+    setSelectedCategory(Number(event.target.value));
   };
 
   const handleDifficultyChange = (event) => {
@@ -24,24 +19,27 @@ const GameSettings = () => {
   };
 
   return (
-    <StyledGameSettings>
-      <h3>Välj Kategori</h3>
-      <select value={selectedCategory.value} onChange={handleSelectChange}>
-        {categories.map((category) => (
-          <option key={category.value} value={category.value}>
-            {category.label}
-          </option>
-        ))}
-      </select>
-      <h3>Välj Svårighetsgrad</h3>
-      <select value={selectedDifficulty} onChange={handleDifficultyChange}>
-        {difficultyLvl.map((lvl) => (
-          <option key={lvl} value={lvl}>
-            {lvl}
-          </option>
-        ))}
-      </select>
-    </StyledGameSettings>
+    <div>
+      <h2>Game Settings</h2>
+      <label>
+        Select Category:
+        <select value={selectedCategory} onChange={handleCategoryChange}>
+          {categories.map((category) => (
+            <option key={category.value} value={category.value}>
+              {category.label}
+            </option>
+          ))}
+        </select>
+      </label>
+      <label>
+        Select Difficulty:
+        <select value={selectedDifficulty} onChange={handleDifficultyChange}>
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+      </label>
+    </div>
   );
 };
 
