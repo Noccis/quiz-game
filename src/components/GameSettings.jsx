@@ -1,5 +1,6 @@
 import React from "react";
 import { useQuestions } from "../context/QuestionContext";
+import { StyledGameSettings } from "./styled/GameSettings.styled";
 
 const GameSettings = () => {
   const {
@@ -19,7 +20,7 @@ const GameSettings = () => {
   };
 
   return (
-    <div>
+    <StyledGameSettings>
       <h2>Game Settings</h2>
       <label>
         Select Category:
@@ -39,7 +40,7 @@ const GameSettings = () => {
           <option value="hard">Hard</option>
         </select>
       </label>
-    </div>
+    </StyledGameSettings>
   );
 };
 
